@@ -5,14 +5,14 @@ float calc_bmi(float h, float w) {
   return w/(h*h);
 }
 
-void main() {
+int main() {
   float height, weight, bmi, bmi_low, bmi_high ;
   char gender[4] ;
 
   printf("Укажите пол (м/ж или m/f): ");
   scanf("%s", gender);
 
-  if (!strcmp(gender, "м") || !strcmp(gender, "m"))
+  if (strcmp(gender, "м") == 0 || strcmp(gender, "m") == 0)
     { bmi_low = 18.5; bmi_high = 25; }
   else
     { bmi_low = 18.5; bmi_high = 25; }
