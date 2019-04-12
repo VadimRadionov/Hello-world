@@ -42,11 +42,9 @@ void sort_part(int *array, int lo, int hi) {
 }
 
 void mergesort(int *array, int size) {
-  int lo = 0;
-  int hi = size;
-  sort_part(array, lo, hi);
-  int n;
+  sort_part(array, 0, size);
   if (Debug) {
+    int n;
     for (n=0; n<10; n++) { printf("%d, ", array[n]); }
     printf("\n");
   }
