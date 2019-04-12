@@ -17,7 +17,7 @@ int reverse_sorter(const void *first_arg, const void *second_arg) {
   return *second - *first;
 }
 
-int (*comparator)(const void *first_arg, const void *second_arg) = sorter; 
+int (*comparator)(const void *first_arg, const void *second_arg); 
 
 void sort_part(int *array, int lo, int hi) {
   if (lo == hi-1) { return ; }
