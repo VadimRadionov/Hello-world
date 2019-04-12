@@ -17,16 +17,18 @@ int reverse_sorter(const void *first_arg, const void *second_arg) {
   return *second - *first;
 }
 
-void sort_part(int *array, int lo, int hi, int (*compare)(const void *, const void *)) {
+int (*comparator)(const void *first_arg, const void *second_arg) = sorter; 
+
+void sort_part(int *array, int lo, int hi) {
   if (lo == hi-1) { return ; }
   int me = (hi+lo) / 2;
-  sort_part(array, lo, me, compare);
-  sort_part(array, me, hi, compare);
+  sort_part(array, lo, me);
+  sort_part(array, me, hi);
   int tmp_array[hi-lo];
   int count_lo = lo;
   int count_hi = me;
   while (count_lo < me && count_hi < hi) {
-    if (compare(array+count_lo, array+count_hi) <= 0) {
+    if (comparator(array+count_lo, array+count_hi) <= 0) {
       tmp_array[count_lo-lo+count_hi-me] = array[count_lo];
       count_lo++;
     } else {
@@ -47,7 +49,8 @@ void sort_part(int *array, int lo, int hi, int (*compare)(const void *, const vo
 }
 
 void mergesort(int *array, int size, int (*compare)(const void *, const void *)) {
-  sort_part(array, 0, size, compare);
+  comparator = compare;
+  sort_part(array, 0, size);
   if (Debug) {
     int n;
     for (n=0; n<10; n++) { printf("%d, ", array[n]); }
@@ -58,10 +61,10 @@ void mergesort(int *array, int size, int (*compare)(const void *, const void *))
 int main() {
   int array[10] = {3, 5, 1, 7, 2, 7, 6, 0, 8, 4};
 
-  mergesort(array, 10, sorter);
-  mergesort(array, 10, reverse_sorter);
+  mergesort(array, 10, &sorter);
+  mergesort(array, 10, &reverse_sorter);
 
-	 
+ 
 }
   
   
