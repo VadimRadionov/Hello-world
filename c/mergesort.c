@@ -26,7 +26,7 @@ void sort_part(int *array, int lo, int hi, int (*compare)(const void *, const vo
   int count_lo = lo;
   int count_hi = me;
   while (count_lo < me && count_hi < hi) {
-    if (compare(array+count_lo, array+count_hi) < 0) {
+    if (compare(array+count_lo, array+count_hi) <= 0) {
       tmp_array[count_lo-lo+count_hi-me] = array[count_lo];
       count_lo++;
     } else {
