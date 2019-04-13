@@ -47,8 +47,8 @@ void sort_part(void *array, int lo, int hi, int size) {
     }
     count_lo++;
   }
-  for (n=lo*size; n<lo*size+tmp_size; n++) {
-    *(a+n) = tmp_array[n-lo*size];
+  for (n=0; n<tmp_size; n++) {
+    *(a+lo*size+n) = tmp_array[n];
   }
   return ;
 }
